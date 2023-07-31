@@ -1,9 +1,13 @@
 /* dom.js */
-
 function init() {
     let element = document.getElementById('walkBtn');
     element.addEventListener('click', function () {
         walk();
+    });
+
+    element = document.getElementById('advWalkBtn');
+    element.addEventListener('click', function () {
+        advWalk();
     });
 
     element = document.getElementById('modifyBtn');
@@ -43,7 +47,10 @@ function walk() {
    el = el.querySelector('section > *');
    showNode(el);
 
+}
 
+function advWalk(){
+    console.log(document.querySelector(':root'))
 }
 
 function showNode(el) {
@@ -51,7 +58,8 @@ function showNode(el) {
     let nodeName = el.nodeName;
     let nodeValue = el.nodeValue;
 
-    alert(`Node type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue}`);
+    document.getElementById("nodeInfo").value+= `Node type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue}\n\n`;
+    // alert(`Node type: ${nodeType}\nNode name: ${nodeName}\nNode value: ${nodeValue}`);
 }
 
 function modify() {
