@@ -151,7 +151,7 @@ function selectorAdd(){
     
     if(val == newCommentCompare){ //works
         txt2 = document.createComment(`New Comment created at ${date.toLocaleString("en-US")}`);
-        document.body.appendChild(txt2);
+        document.body.appendChild(txt2)
         console.log("newComment");
     }
 
