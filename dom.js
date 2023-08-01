@@ -112,7 +112,7 @@ function advModify() {
     let el = document.getElementById('txtChange');
     el.innerHTML = "DOM Manipulation is Fun!";
     el.style.color = colors[Math.floor(Math.random()*6)]
-    document.getElementById('p1').classList.add("schmancy")
+    document.getElementById('p1').classList.toggle("schmancy")
 }
 
 function add() {
@@ -141,7 +141,7 @@ function add() {
 }
 
 function selectorAdd(){
-    let p, txt1, txt2;
+    let newP, txt1, txt2, txt3;
     let date = new Date();
     let newCommentCompare = "newComment"
     let newTextNodeCompare = "textNode"
@@ -149,26 +149,27 @@ function selectorAdd(){
     let newComment = document.getElementById('elementOptions');
     let val = newComment.options[newComment.selectedIndex].value
     
-    if(val == newCommentCompare){
-        txt2 = document.body.createComment('New Comment');
-        
+    if(val == newCommentCompare){ //works
+        txt2 = document.createComment(`New Comment created at ${date.toLocaleString("en-US")}`);
+        document.body.appendChild(txt2);
         console.log("newComment");
     }
 
-    if(val == newTextNodeCompare){
+    if(val == newTextNodeCompare){ //works
         txt1 = document.createTextNode(`New Text Node created at ${date.toLocaleString("en-US")}`);
         document.body.appendChild(txt1);
         console.log("newTextNode");
     }
 
-    if(val == newElementCompare){
-        p = document.createElement('p');
-        p.id = "newP"
-        document.body.appendChild(p)
-        console.log(document.getElementById('newP'));
-        // document.getElementById('newP').classList.add("newPStyle")
-
-        console.log("newElement");
+    if(val == newElementCompare){ //works
+        txt3 = document.createTextNode(`New Element created at ${date.toLocaleString("en-US")}`);
+        newP = document.createElement('p');
+        newP.appendChild(txt3);
+        newP.id = "newP"
+        let oldP = document.getElementById('p1');
+        oldP.parentNode.insertBefore(newP, oldP.nextSibling);
+        console.log(document.getElementById('newP'));       
+        document.getElementById('newP').classList.add("newPStyle")
     }
 }
 
