@@ -1,4 +1,6 @@
 /* dom.js */
+var colors = ["black", "darkslategray", "darkgreen", "darkgoldenrod", "darkred", "darkmagenta"]
+
 function init() {
     let element = document.getElementById('walkBtn');
     element.addEventListener('click', function () {
@@ -15,6 +17,11 @@ function init() {
         modify();
     });
 
+    element = document.getElementById('advModifyBtn');
+    element.addEventListener('click', function () {
+        advModify()
+    });
+
     element = document.getElementById('addBtn');
     element.addEventListener('click', function () {
         add();
@@ -24,6 +31,17 @@ function init() {
     element.addEventListener('click', function () {
         remove();
     });
+
+    element = document.getElementById('safeDeleteBtn');
+    element.addEventListener('click', function () {
+        safeRemove();
+    });
+
+    element = document.getElementById('selectorDeleteBtn');
+    element.addEventListener('click', function () {
+        selectorRemove();
+    });
+
 }
 
 function walk() {
@@ -51,6 +69,7 @@ function walk() {
 
 function advWalk(){
     console.log(document.querySelector(':root'))
+
 }
 
 function showNode(el) {
@@ -85,6 +104,13 @@ function modify() {
 
 }
 
+function advModify() {
+    let el = document.getElementById('txtChange');
+    el.innerHTML = "DOM Manipulation is Fun!";
+    el.style.color = colors[Math.floor(Math.random()*6)]
+    document.getElementById('p1').classList.add("schmancy")
+}
+
 function add() {
 
     let p, em, txt1, txt2, txt3;
@@ -111,8 +137,23 @@ function add() {
     // clearly short hands are pretty easy!
 }
 
+function selectorAdd(){
+    let newElement = document.createElement('p');
+    let newTextNode = document.createTextNode('TxtNode');
+    let newComment = document.createComment('newComment');
+    if
+}
+
 function remove() {
   document.body.removeChild(document.body.lastChild);
+}
+
+function safeRemove(){
+    console.log(document.body.lastChild);
+}
+
+function selectorRemove(){
+    console.log(document.body.lastChild);
 }
 
 window.addEventListener('DOMContentLoaded', init);
