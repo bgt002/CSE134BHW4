@@ -27,6 +27,11 @@ function init() {
         add();
     });
 
+    element = document.getElementById('submitBtn');
+    element.addEventListener('click', function () {
+        selectorAdd();
+    });
+
     element = document.getElementById('removeBtn');
     element.addEventListener('click', function () {
         remove();
@@ -69,7 +74,6 @@ function walk() {
 
 function advWalk(){
     console.log(document.querySelector(':root'))
-
 }
 
 function showNode(el) {
@@ -130,7 +134,6 @@ function add() {
     // go an insert this new copy below the old one
     let oldP = document.getElementById('p1');
     oldP.parentNode.insertBefore(p, oldP.nextSibling);
-
     // Alternative method using innerHTML and insertAdjacentHTML
     // let oldP = document.getElementById('p1');
     // oldP.insertAdjacentHTML('afterend', '<p>This is a<em>test</em> of the DOM</p>');
@@ -138,10 +141,35 @@ function add() {
 }
 
 function selectorAdd(){
-    let newElement = document.createElement('p');
-    let newTextNode = document.createTextNode('TxtNode');
-    let newComment = document.createComment('newComment');
-    if
+    let p, txt1, txt2;
+    let date = new Date();
+    let newCommentCompare = "newComment"
+    let newTextNodeCompare = "textNode"
+    let newElementCompare = "newElement"
+    let newComment = document.getElementById('elementOptions');
+    let val = newComment.options[newComment.selectedIndex].value
+    
+    if(val == newCommentCompare){
+        txt2 = document.body.createComment('New Comment');
+        
+        console.log("newComment");
+    }
+
+    if(val == newTextNodeCompare){
+        txt1 = document.createTextNode(`New Text Node created at ${date.toLocaleString("en-US")}`);
+        document.body.appendChild(txt1);
+        console.log("newTextNode");
+    }
+
+    if(val == newElementCompare){
+        p = document.createElement('p');
+        p.id = "newP"
+        document.body.appendChild(p)
+        console.log(document.getElementById('newP'));
+        // document.getElementById('newP').classList.add("newPStyle")
+
+        console.log("newElement");
+    }
 }
 
 function remove() {
@@ -149,11 +177,11 @@ function remove() {
 }
 
 function safeRemove(){
-    console.log(document.body.lastChild);
+    console.log("document.body.lastChild");
 }
 
 function selectorRemove(){
-    console.log(document.body.lastChild);
+    console.log("document.body.lastChild");
 }
 
 window.addEventListener('DOMContentLoaded', init);

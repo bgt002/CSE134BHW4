@@ -58,6 +58,11 @@
             animation-iteration-count: infinite;
             animation-direction: alternate;
         }
+
+        .newPStyle{
+            color: blue;
+            border: dashed;
+        }
         
         /* https://www.html.am/html-codes/marquees/slide-in-text.cfm Slide in text animation from here */
         @keyframes cssAnim {
@@ -124,11 +129,11 @@
         <legend>Add</legend>
         <label for="addBtn">Basic Addition</label>
         <input type="button" id="addBtn" value="Add">
-        <label for="cars">Select Element to Add:</label>
-        <select name="cars" id="cars">
+        <label for="elementOption">Select Element to Add:</label>
+        <select name="elementOptions" id="elementOptions">
             <option value="textNode">Text Node</option>
-            <option value="Comment">Comment</option>
-            <option value="Element">Element</option>
+            <option value="newComment">Comment</option>
+            <option value="newElement">Element</option>
             <input type="button" id="submitBtn" value="submit">
         </select>
         <!--
@@ -156,7 +161,7 @@
     <fieldset>
         <legend>Clone</legend>
         <label for="cloneBtn">Clone</label>
-        <input type="button" id="basicCloneBtn" value="clone">
+        <input type="button" id="basicCloneBtn" value="Basic Clone">
         
         <!--
           Q5a) Add a button "Basic Clone" that clones the p tag and adds it to the DOM.  You can add it to the same area you added new content.  Be cautious with your cloning to modify attributes
