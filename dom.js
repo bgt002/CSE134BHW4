@@ -229,7 +229,7 @@ function basicClone(){
 }
 
 function advClone(){
-    // let rng, cardNumber, text, image, card, cloneCard;
+    let rng, cardNumber, text, image, card, cloneCard;
     card = document.getElementById('cardTemplate');
     cloneCard = card.content.cloneNode(true)
     rng = Math.floor(Math.random()*6000);
