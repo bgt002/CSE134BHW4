@@ -64,6 +64,16 @@
             color: blue;
             border: dashed;
         }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 40%;
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
         
         /* https://www.html.am/html-codes/marquees/slide-in-text.cfm Slide in text animation from here */
         @keyframes cssAnim {
@@ -136,6 +146,9 @@
             <option value="newComment">Comment</option>
             <option value="newElement">Element</option>
             <input type="button" id="submitBtn" value="submit">
+            <div id="newArea">
+                <p id="p2"></p>
+            </div>
         </select>
         <!--
             Q3) Add a select menu that allows you to add a new element to the DOM.  The select menu should have the following options: Text Node, Comment, and Element. When you select one of these options and click the button, the appropriate element should be added to the DOM.  You may want to define an output tag to put the newly created elements in it and style it in a fashion with a border or background color, so you can tell it is new content.  You will need a corresponding text field to define the contents of the text node, comment text, or tag name you want to insert.  By default set the text of any added element to say "New Element" or "New Comment" or "New Text Node" depending on the type of element you are adding but add in the current date and time using a JS Date object.  You can use the toLocaleString() method to get a nicely formatted date and time string.
@@ -146,8 +159,9 @@
     <fieldset>
         <legend>Remove</legend>
         <label for="removeBtn">Simple Delete</label>
-        <input type="button" id="removeBtn" value="Remove">
-        <input type="button" id="safeDeleteBtn" value="safeRemove">
+        <input type="button" id="removeBtn" value="Remove"><br>
+        <input type="button" id="safeDeleteBtn" value="safeRemove"><br><br>
+        <input type="text" id="selectorDeleteArea"><br>
         <input type="button" id="selectorDeleteBtn" value="selectorRemove">
         <!--
 
@@ -163,6 +177,7 @@
         <legend>Clone</legend>
         <label for="cloneBtn">Clone</label>
         <input type="button" id="basicCloneBtn" value="Basic Clone">
+        <input type="button" id="advCloneBtn" value="Advanced Clone">
         
         <!--
           Q5a) Add a button "Basic Clone" that clones the p tag and adds it to the DOM.  You can add it to the same area you added new content.  Be cautious with your cloning to modify attributes
@@ -179,6 +194,17 @@
 <h2>Look out below these will get deleted if you press the buttons above!</h2>
 <p>I am scared of being deleted!</p>
 <p>Me too. Oh noes, here comes the <code>removeChild()</code> method, it's going to delete us!</p>
+
+<template id="cardTemplate">
+    <div class="card">
+        <img src="" alt="Avatar" class="Avatar">
+        <div class="container">
+          <h4 class="title"><b>Card Name</b></h4> 
+          <p id="shortParagraph">Short Paragraph</p> 
+          <p class="link">Link</p>
+        </div>
+    </div>
+</template>
 
 <!-- put all your new code in this dom.js file -->
 <script src="dom.js"></script>

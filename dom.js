@@ -47,6 +47,15 @@ function init() {
         selectorRemove();
     });
 
+    element = document.getElementById('basicCloneBtn');
+    element.addEventListener('click', function () {
+        basicClone();
+    });
+
+    element = document.getElementById('advCloneBtn');
+    element.addEventListener('click', function () {
+        advClone();
+    });
 }
 
 function walk() {
@@ -152,37 +161,67 @@ function selectorAdd(){
     if(val == newCommentCompare){ //works
         txt2 = document.createComment(`New Comment created at ${date.toLocaleString("en-US")}`);
         document.body.appendChild(txt2)
-        console.log("newComment");
     }
 
     if(val == newTextNodeCompare){ //works
         txt1 = document.createTextNode(`New Text Node created at ${date.toLocaleString("en-US")}`);
-        document.body.appendChild(txt1);
-        console.log("newTextNode");
+        let oldP = document.getElementById('p2');
+        oldP.appendChild(txt1);
     }
 
     if(val == newElementCompare){ //works
         txt3 = document.createTextNode(`New Element created at ${date.toLocaleString("en-US")}`);
         newP = document.createElement('p');
         newP.appendChild(txt3);
-        newP.id = "newP"
-        let oldP = document.getElementById('p1');
-        oldP.parentNode.insertBefore(newP, oldP.nextSibling);
-        console.log(document.getElementById('newP'));       
-        document.getElementById('newP').classList.add("newPStyle")
+        newP.id = "newP";
+        let oldP = document.getElementById('p2');
+        oldP.parentNode.insertBefore(newP, oldP.nextSibling);   
+        document.getElementById('newP').classList.add("newPStyle");
     }
 }
 
 function remove() {
-  document.body.removeChild(document.body.lastChild);
+    document.body.removeChild(document.body.lastChild);
 }
 
-function safeRemove(){
-    console.log("document.body.lastChild");
+function safeRemove(){ //works
+    endOfPage = document.body.lastChild;
+    if(endOfPage.id == "controls"){
+        document.body.removeChild(endOfPage.previousElementSibling);
+    }
+    else{
+        document.body.removeChild(endOfPage);
+    }
 }
 
-function selectorRemove(){
-    console.log("document.body.lastChild");
+function selectorRemove(){ //works https://stackoverflow.com/questions/13125817/how-to-remove-elements-that-were-fetched-using-queryselectorall
+    let elementType;
+    let selectedElement;
+    elementType = document.getElementById('selectorDeleteArea').value;
+    selectedElement = document.querySelectorAll(elementType);
+    //iterates through
+    selectedElement.forEach(element => {
+        element.remove();
+      });
 }
 
+function basicClone(){
+    const node = document.getElementById("p1");
+    const clone = node.cloneNode(true);
+    
+    document.getElementById("p1").appendChild(clone);
+}
+
+function advClone(){
+    let rng, cardNumber, text, image, card, shortParagraph;
+    shortParagraph = document.getElementById('shortParagraph');
+    // card = document.getElementById('cardTemplate').contentEditable.cloneNode(true);
+    rng = Math.floor(Math.random()*6000);
+    cardNumber = "Card #: " + rng;
+    image = `https://thispersondoesnotexist.com/`;
+    text = "This is " + cardNumber +". This is where the short paragraph is.";
+
+    shortParagraph.innerHTML = text;
+    
+}
 window.addEventListener('DOMContentLoaded', init);
