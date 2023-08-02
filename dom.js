@@ -213,15 +213,15 @@ function basicClone(){
 }
 
 function advClone(){
-    let rng, cardNumber, text, image, card, shortParagraph;
+    let rng, cardNumber, text, image, card, shortParagraph, cloneCard;
     shortParagraph = document.getElementById('shortParagraph');
-    // card = document.getElementById('cardTemplate').contentEditable.cloneNode(true);
+    card = document.getElementById('cardTemplate').content.cloneNode(true);
+    // cloneCard = card.con
     rng = Math.floor(Math.random()*6000);
     cardNumber = "Card #: " + rng;
     image = `https://thispersondoesnotexist.com/`;
     text = "This is " + cardNumber +". This is where the short paragraph is.";
 
-    shortParagraph.innerHTML = text;
-    
+    card.querySelector('shortParagraph').textContent = text;
 }
 window.addEventListener('DOMContentLoaded', init);
