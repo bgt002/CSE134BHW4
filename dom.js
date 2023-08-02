@@ -78,11 +78,27 @@ function walk() {
 
    el = el.querySelector('section > *');
    showNode(el);
-
 }
 
-function advWalk(){
-    console.log(document.querySelector(':root'))
+function advWalk() {
+    const el = document.getElementById('nodeInfo');
+    const root = document.documentElement;
+    const formattedText = advWalkIter(root, "");
+    el.value = formattedText;
+}
+
+function advWalkIter(node, spacer) {
+    let formattedText = "";
+    if (node.nodeType === Node.ELEMENT_NODE) {
+        const nodeName = node.nodeName;
+        formattedText += `${spacer} ${nodeName}\n`;
+        const childNodes = node.childNodes;
+        for (let childNode of childNodes) {
+            formattedText += advWalkIter(childNode, `${spacer}|==`);
+        }
+    }
+
+    return formattedText;
 }
 
 function showNode(el) {
@@ -209,19 +225,20 @@ function basicClone(){
     const node = document.getElementById("p1");
     const clone = node.cloneNode(true);
     
-    document.getElementById("p1").appendChild(clone);
+    document.getElementById("p3").appendChild(clone);
 }
 
 function advClone(){
-    let rng, cardNumber, text, image, card, shortParagraph, cloneCard;
-    shortParagraph = document.getElementById('shortParagraph');
-    card = document.getElementById('cardTemplate').content.cloneNode(true);
-    // cloneCard = card.con
+    // let rng, cardNumber, text, image, card, cloneCard;
+    card = document.getElementById('cardTemplate');
+    cloneCard = card.content.cloneNode(true)
     rng = Math.floor(Math.random()*6000);
     cardNumber = "Card #: " + rng;
-    image = `https://thispersondoesnotexist.com/`;
+    image = `https://source.unsplash.com/random/?software&&/` + rng;
     text = "This is " + cardNumber +". This is where the short paragraph is.";
-
-    card.querySelector('shortParagraph').textContent = text;
+    cloneCard.querySelector('.title').textContent = cardNumber;
+    cloneCard.querySelector('.shortParagraph').textContent = text;
+    cloneCard.querySelector('.avatar').src = image;
+    document.body.appendChild(cloneCard);
 }
 window.addEventListener('DOMContentLoaded', init);

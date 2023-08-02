@@ -69,6 +69,14 @@
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             transition: 0.3s;
             width: 40%;
+            text-align: center;
+        }
+
+        .card img{
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            width: 500px
         }
 
         .container {
@@ -177,6 +185,9 @@
         <legend>Clone</legend>
         <label for="cloneBtn">Clone</label>
         <input type="button" id="basicCloneBtn" value="Basic Clone">
+        <div id="newArea2">
+            <p id="p3"></p>
+        </div>
         <input type="button" id="advCloneBtn" value="Advanced Clone">
         
         <!--
@@ -197,7 +208,7 @@
 
 <template id="cardTemplate">
     <div class="card">
-        <img src="" alt="Avatar" class="Avatar">
+        <img src="" alt="avatar" class="avatar">
         <div class="container">
           <h4 class="title"><b>Card Name</b></h4> 
           <p class="shortParagraph">Short Paragraph</p> 
